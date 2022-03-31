@@ -3,6 +3,7 @@ lockfileVersion: 5.3
 specifiers:
   '@antfu/eslint-config': ^0.19.1
   '@iconify-json/carbon': ^1.1.2
+  '@iconify-json/mdi': ^1.1.6
   '@types/node': ^17.0.23
   '@unocss/reset': ^0.30.8
   '@vitejs/plugin-vue': ^2.3.0
@@ -23,6 +24,7 @@ specifiers:
   vue-tsc: ^0.33.9
 
 dependencies:
+  '@iconify-json/mdi': registry.npmmirror.com/@iconify-json/mdi/1.1.6
   '@vueuse/core': 8.2.0_vue@3.2.31
   vue: 3.2.31
   vue-router: 4.0.14_vue@3.2.31
@@ -215,16 +217,12 @@ packages:
     resolution: {integrity: sha512-6er6wSGF3hgc1JEZqiGpg21CTCjHBYOUwqLmb2Idzkjiw6ogalGP0ZMLVutCzah+0WB4yP+Zd2oVPN8jvJ+Ftg==}
     dev: true
 
-  /@iconify/types/1.1.0:
-    resolution: {integrity: sha512-Jh0llaK2LRXQoYsorIH8maClebsnzTcve+7U3rQUSnC11X4jtPnFuyatqFLvMxZ8MLG8dB4zfHsbPfuvxluONw==}
-    dev: true
-
   /@iconify/utils/1.0.31:
     resolution: {integrity: sha512-sBksCt6kI4WaMHwXo1c/MQVuQfWwwd87qHiAPASN8neoQvMCdYTLn+2khc3/OmYPbmg6kYisCxVLkAv0pcy9Ig==}
     dependencies:
       '@antfu/install-pkg': 0.1.0
       '@antfu/utils': 0.5.0
-      '@iconify/types': 1.1.0
+      '@iconify/types': registry.npmmirror.com/@iconify/types/1.1.0
       debug: 4.3.4
       kolorist: 1.5.1
       local-pkg: 0.4.1
@@ -627,7 +625,7 @@ packages:
       '@babel/parser': 7.16.6
       '@vue/shared': 3.2.31
       estree-walker: 2.0.2
-      source-map: 0.6.1
+      source-map: registry.npmmirror.com/source-map/0.6.1
 
   /@vue/compiler-dom/3.2.31:
     resolution: {integrity: sha512-60zIlFfzIDf3u91cqfqy9KhCKIJgPeqxgveH2L+87RcGU/alT6BRrk5JtUso0OibH3O7NXuNOQ0cDc9beT0wrg==}
@@ -1016,7 +1014,7 @@ packages:
       normalize-path: 3.0.0
       readdirp: 3.6.0
     optionalDependencies:
-      fsevents: 2.3.2
+      fsevents: registry.npmmirror.com/fsevents/2.3.2
     dev: true
 
   /ci-info/3.3.0:
@@ -1372,7 +1370,7 @@ packages:
       esutils: 2.0.3
       optionator: 0.8.3
     optionalDependencies:
-      source-map: 0.6.1
+      source-map: registry.npmmirror.com/source-map/0.6.1
     dev: true
 
   /eslint-import-resolver-node/0.3.6:
@@ -1832,14 +1830,6 @@ packages:
   /fs.realpath/1.0.0:
     resolution: {integrity: sha1-FQStJSMVjKpA20onh8sBQRmU6k8=}
     dev: true
-
-  /fsevents/2.3.2:
-    resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
-    engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
-    os: [darwin]
-    requiresBuild: true
-    dev: true
-    optional: true
 
   /function-bind/1.1.1:
     resolution: {integrity: sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A==}
@@ -3718,6 +3708,19 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
+  registry.npmmirror.com/@iconify-json/mdi/1.1.6:
+    resolution: {integrity: sha512-TaWi7b1Ppph7b63uq1qVr6l/bj7/yKIX+5qsMI8gu1y8ITguh7KhKq3nHxCVxm4tDOaUfKskOzzs7JpxWymzOA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@iconify-json/mdi/-/mdi-1.1.6.tgz}
+    name: '@iconify-json/mdi'
+    version: 1.1.6
+    dependencies:
+      '@iconify/types': registry.npmmirror.com/@iconify/types/1.1.0
+    dev: false
+
+  registry.npmmirror.com/@iconify/types/1.1.0:
+    resolution: {integrity: sha512-Jh0llaK2LRXQoYsorIH8maClebsnzTcve+7U3rQUSnC11X4jtPnFuyatqFLvMxZ8MLG8dB4zfHsbPfuvxluONw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@iconify/types/-/types-1.1.0.tgz}
+    name: '@iconify/types'
+    version: 1.1.0
+
   registry.npmmirror.com/esbuild-android-64/0.14.29:
     resolution: {integrity: sha512-tJuaN33SVZyiHxRaVTo1pwW+rn3qetJX/SRuc/83rrKYtyZG0XfsQ1ao1nEudIt9w37ZSNXR236xEfm2C43sbw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/esbuild-android-64/-/esbuild-android-64-0.14.29.tgz}
     name: esbuild-android-64
@@ -3947,3 +3950,9 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  registry.npmmirror.com/source-map/0.6.1:
+    resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/source-map/-/source-map-0.6.1.tgz}
+    name: source-map
+    version: 0.6.1
+    engines: {node: '>=0.10.0'}
