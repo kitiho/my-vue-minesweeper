@@ -12,6 +12,7 @@
   "dependencies": {
     "@iconify-json/mdi": "^1.1.6",
     "@vueuse/core": "^8.2.0",
+    "canvas-confetti": "^1.5.1",
     "vue": "^3.2.31",
     "vue-router": "^4.0.14"
   },

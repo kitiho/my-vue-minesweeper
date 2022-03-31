@@ -1,68 +1,76 @@
 <script setup lang="ts">
 import { GamePlay } from '~/composables/logic'
-import type { BlockState } from '~/types'
+import Confetti from '~/components/Confetti.vue'
 
-const ISDEV = false
-/**
-   * 数字的颜色
-   */
-const numberColors = [
-  'text-transparent',
-  'text-blue-500',
-  'text-green-500',
-  'text-orange-500',
-  'text-red-500',
-  'text-purple-500',
-  'text-pink-500',
-  'text-teal-500',
-
-]
-const play = new GamePlay(12, 12)
-
-function getClass(block: BlockState) {
-  if (block.flagged)
-    return 'bg-gray-500/10'
-  if (!block.revealed) return 'bg-gray-500/10  hover:bg-gray/10'
-  return block.mine
-    ? 'bg-red-500/50'
-    : numberColors[block.adjacentMines]
+const play = new GamePlay(9, 9, 10)
+const state = computed(() => play.board)
+const now = useNow()
+const timerMS = computed(() => Math.round(((play.state.value.endMS ?? +now.value) - (play.state.value.startMS ?? +now.value)) / 1000))
+const mineRest = computed(() => {
+  if (!play.state.value.mineGenerated)
+    return play.mines
+  return play.blocks.reduce((a, b) => a - (b.flagged ? 1 : 0), play.mines)
+})
+function newGame(difficulty: 'easy' | 'medium' | 'hard') {
+  switch (difficulty) {
+    case 'easy':
+      play.reset(10, 10, 10)
+      break
+    case 'medium':
+      play.reset(20, 20, 40)
+      break
+    case 'hard':
+      play.reset(30, 30, 99)
+      break
+  }
 }
-
+watchEffect(() => {
+  play.checkGameState()
+})
 </script>
 
 <template>
   <div>
     <div>Mine Sweeper</div>
-    <div p5>
-      <div v-for="row, y in play.state" :key="y" flex="~" items-center justify-center>
-        <button
-          v-for="item in row"
-          :key="item"
-          w-10
-          h-10
-          m="0.5"
-          border="1 gray-400/10"
-          flex="~"
-          items-center
-          justify-center
-          :class="getClass(item)"
-          @click="play.onClick(item)"
-          @contextmenu.prevent="play.onRightClick(item)"
-        >
-          <template v-if="item.flagged">
-            <div i-mdi-flag text-red />
-          </template>
-          <template v-if="item.revealed || ISDEV">
-            <div v-if="item.mine" i-mdi-mine />
-            <div v-else>
-              {{ item.adjacentMines }}
-            </div>
-          </template>
-        </button>
+    <div flex="~ gap1" justify-center p4>
+      <button btn @click="play.reset()">
+        New Game
+      </button>
+      <button btn @click="newGame('easy')">
+        Easy
+      </button>
+      <button btn @click="newGame('medium')">
+        Medium
+      </button>
+      <button btn @click="newGame('hard')">
+        Hard
+      </button>
+    </div>
+    <div flex="~ gap-10" justify-center>
+      <div font-mono text-2xl flex="~ gap-1" items-center>
+        <div i-carbon-timer />
+        {{ timerMS }}
       </div>
-      <button btn mt5 @click="play.reset">
+      <div font-mono text-2xl flex="~ gap-1" items-center>
+        <div i-mdi-mine />
+        {{ mineRest }}
+      </div>
+    </div>
+    <div p5>
+      <div v-for="row, y in state" :key="y" flex="~" items-center justify-center>
+        <template v-for="item in row" :key="item">
+          <MineBlock
+            :block="item"
+            @click="play.onClick(item)"
+            @contextmenu.prevent="play.onRightClick(item)"
+            @lrclick="play.autoExpand(item)"
+          />
+        </template>
+      </div>
+      <button btn mt5 @click="play.reset()">
         RESET
       </button>
     </div>
+    <Confetti :passed="play.state.value.status === 'won'" />
   </div>
 </template>
